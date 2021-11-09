@@ -2,6 +2,7 @@ package devsmtp
 
 import (
 	"io/ioutil"
+	"strings"
 
 	"github.com/ernsheong/grand"
 	"github.com/gobuffalo/buffalo/mail"
@@ -21,7 +22,8 @@ func (s *DevSMTP) Send(m mail.Message) error {
 	// Only care about HTML for now
 	htmlContent := ""
 	for _, body := range m.Bodies {
-		if body.ContentType == "text/html" {
+		// handle both "text/html" and "text/html; charset=utf-8"
+		if strings.HasPrefix(body.ContentType, "text/html") {
 			htmlContent += body.Content
 		}
 	}
