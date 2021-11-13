@@ -1,4 +1,4 @@
-module github.com/beliantech/devsmtp
+module github.com/beliantech/buffalo-devsmtp
 
 go 1.17
 
